@@ -372,6 +372,7 @@ img {
 .client-item:hover,
 .client-item:focus {
   fill: #ffffff;
+  border: 1px solid var(--accent-color);
   background-color: var(--accent-color);
 }
 /* Footer */
