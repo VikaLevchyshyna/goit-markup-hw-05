@@ -151,6 +151,9 @@ img {
 .link-internal:focus .icon-nav {
   fill: var(--accent-color);
 }
+.active {
+  color: var(--accent-color);
+}
 .link.active::after {
   content: '';
   position: absolute;
@@ -223,18 +226,15 @@ img {
   flex-basis: calc(100% / 4 - var(--card-set-gap));
 }
 .icon-container {
+  display: flex;
   justify-content: center;
   align-items: center;
   width: 270px;
   height: 120px;
   margin-bottom: 30px;
   background-color: #f5f4fa;
+  border-radius: 4px;
 }
-/* .icon {
-  width: 70px;
-  justify-content: center;
-  align-items: center;
-} */
 .feature-title {
   padding-bottom: 10px;
   font-weight: 700;
@@ -266,13 +266,11 @@ img {
   overflow: hidden;
 }
 .services-overlay {
-  display: inline-block;
   position: absolute;
   content: '';
   bottom: 0;
   right: 0;
   width: 100%;
-  height: 24%;
   opacity: 1;
   background-color: rgba(47, 48, 58, 0.8);
 }
@@ -293,6 +291,7 @@ img {
   background-color: #f5f4fa;
 }
 .list-team .item {
+  width: 270px;
   background-color: #ffffff;
   flex-basis: calc(100% / 4 - var(--card-set-gap));
   margin-top: var(--card-set-gap);
@@ -318,7 +317,9 @@ img {
 .list-icon {
   display: flex;
   margin-bottom: 30px;
-  justify-content: space-evenly;
+}
+.icon-item {
+  margin: 0 10px;
 }
 .social-list-link {
   display: flex;
@@ -346,34 +347,28 @@ img {
   display: flex;
   justify-content: space-between;
 }
-.client-item {
+.link-client {
   display: flex;
+  justify-content: center;
+  align-items: center;
   width: 170px;
   height: 92px;
   border: 1px solid #afb1b8;
   box-sizing: border-box;
   border-radius: 4px;
-  justify-content: center;
-  align-items: center;
   fill: #afb1b8;
   background-color: #ffffff;
   transition-property: fill;
   transition-duration: 250ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-property: background-color;
+  transition-property: border;
   transition-duration: 250ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
-.link-client {
-  display: flex;
-  fill: #afb1b8;
-  background-color: #ffffff;
-}
-.client-item:hover,
-.client-item:focus {
-  fill: #ffffff;
+.link-client:hover,
+.link-client:focus {
+  fill: var(--accent-color);
   border: 1px solid var(--accent-color);
-  background-color: var(--accent-color);
 }
 /* Footer */
 .contacs {
@@ -533,28 +528,26 @@ img {
 }
 /* Backdrop */
 .backdrop {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
-  z-index: 2;
+  position: fixed;
   left: 0;
   top: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transform: scale(1);
-  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.2);
+  opacity: 1;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .modal {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  width: 528px;
-  height: 581px;
+  transform: translate(-50%, -50%) scale(1);
+  min-width: 528px;
+  min-height: 581px;
   background-color: #ffffff;
   border-radius: 5px;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .close-btn {
   position: absolute;
@@ -572,4 +565,7 @@ img {
   opacity: 0;
   pointer-events: none;
   transform: scale(0.2);
+}
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0.9);
 }
